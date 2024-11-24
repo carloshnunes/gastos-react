@@ -1,23 +1,19 @@
-import logo from './logo.svg';
-import './App.css';
+import React, { useState } from 'react';
+import Formulario from './components/Formulario';
+import Tabelas from './components/Tabelas';
 
 function App() {
+  const [gastos, setGastos] = useState([]);
+
+  const handleGastoRegistrado = (gasto) => {
+    setGastos((prevGastos) => [...prevGastos, gasto]);
+  };
+
   return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
+    <div>
+      <h1>Controle de Gastos</h1>
+      <Formulario onGastoRegistrado={handleGastoRegistrado} />
+      <Tabelas gastos={gastos} />
     </div>
   );
 }
