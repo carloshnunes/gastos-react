@@ -1,19 +1,31 @@
 import React, { useState } from 'react';
 import Formulario from './components/Formulario';
-import Tabelas from './components/Tabelas';
+import Tabela from './components/Tabela';
 
 function App() {
   const [gastos, setGastos] = useState([]);
+  const categorias = [
+    'Alimentação',
+    'Transporte',
+    'Lazer',
+    'Saúde',
+    'Roupas',
+    'Estudo',
+    'Jogos',
+  ];
 
-  const handleGastoRegistrado = (gasto) => {
-    setGastos((prevGastos) => [...prevGastos, gasto]);
+  const handleGastoRegistrado = (novoGasto) => {
+    setGastos((prevGastos) => [...prevGastos, novoGasto]);
   };
 
   return (
-    <div>
+    <div style={{ padding: '20px' }}>
       <h1>Controle de Gastos</h1>
-      <Formulario onGastoRegistrado={handleGastoRegistrado} />
-      <Tabelas gastos={gastos} />
+      <Formulario
+        onGastoRegistrado={handleGastoRegistrado}
+        categorias={categorias}
+      />
+      <Tabela gastos={gastos} />
     </div>
   );
 }
